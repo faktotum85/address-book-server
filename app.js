@@ -14,6 +14,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 passportConfig();
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://sw-address-book.herokuapp.com');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 // handle routes
 app.use('/api', routes);
 
