@@ -37,7 +37,8 @@ exports.authenticateUser = async (req, res) => {
         res.json({
             success: true,
             message: 'Authentication successful. Enjoy your token',
-            token: token
+            token: token,
+            username: user.username
         });
     });
 };
