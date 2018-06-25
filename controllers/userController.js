@@ -9,7 +9,8 @@ exports.createUser = (req, res) => {
             return res.json({
                 success: true,
                 message: 'Successfully created a new user',
-                token
+                token,
+                username: user.username,
             });
         })
         .catch(err => {

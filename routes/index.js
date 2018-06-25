@@ -11,11 +11,11 @@ router.get('/init', (req, res) => {
     res.json({ message: 'API Initialized!' });
 });
 
-router.get('/persons', catchErrors(personController.getPersons));
-router.get('/persons/:id', catchErrors(personController.getPerson));
-router.put('/persons/:id', catchErrors(personController.editPerson));
-router.post('/persons', catchErrors(personController.createPerson));
-router.delete('/persons/:id', catchErrors(personController.deletePerson));
+router.get('/persons', passport.authenticate('jwt', {session: false}), catchErrors(personController.getPersons));
+router.get('/persons/:id', passport.authenticate('jwt', {session: false}), catchErrors(personController.getPerson));
+router.put('/persons/:id', passport.authenticate('jwt', {session: false}), catchErrors(personController.editPerson));
+router.post('/persons', passport.authenticate('jwt', {session: false}), catchErrors(personController.createPerson));
+router.delete('/persons/:id', passport.authenticate('jwt', {session: false}), catchErrors(personController.deletePerson));
 
 router.post('/users', userController.createUser);
 router.post('/users/authenticate', catchErrors(userController.authenticateUser));
